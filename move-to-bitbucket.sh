@@ -2,12 +2,12 @@
 
 # must run in parent folder of repo
 
-repo=wyndham-test-utils # put repo name here
+repo= # put repo name here
 
 echo "Moving to Bitbucket..."
 echo $repo
 
-git clone ssh://git@new-stash.olson.com:7999/twa/$repo.git
+git clone ssh://<repo-url>/$repo.git
 cd $repo
 echo "in repo..."
 echo $repo
@@ -20,7 +20,7 @@ git branch -r | while read line ; do
 done
 
 echo "Setting remote url"
-ssh=ssh://git@bitbucket.icfolson.com:7999/twa/$repo.git
+ssh=ssh://<repo-url>/$repo.git
 echo $ssh
 git remote set-url origin $ssh
 git remote -v
@@ -39,7 +39,7 @@ git branch | while read line ; do
     echo "Checking out branch..."
     echo $br
     git checkout $br
-    sed -i "" "s/new-stash.olson.com:7999/bitbucket.icfolson.com:7999/" package.json
+    sed -i "" "s/new-stash<url>/bitbucket<url>/" package.json
     git add .
     git commit -m "change SSH key"
     git push
